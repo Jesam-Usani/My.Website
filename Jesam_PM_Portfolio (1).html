@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jesam Usani — Product Manager Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0f1e;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --teal-mid: #5eead4;
+    --cream: #fafaf7;
+    --warm: #f5f0e8;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --accent: #f59e0b;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(250,250,247,0.93);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--ink); text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--muted); text-decoration: none;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 48px 80px 80px;
+  }
+  .hero-right {
+    background: var(--ink);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px; position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: ''; position: absolute; top: -120px; right: -120px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,148,136,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-right::after {
+    content: ''; position: absolute; bottom: -80px; left: -80px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .available-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal-light); color: var(--teal);
+    font-size: 0.72rem; font-weight: 600;
+    padding: 6px 14px; border-radius: 100px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 28px; width: fit-content;
+    animation: fadeSlideUp 0.6s ease both;
+  }
+  .available-badge::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--teal); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.4; transform:scale(1.4); }
+  }
+
+  .hero-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.2rem, 5.5vw, 5rem);
+    font-weight: 700; line-height: 1.0;
+    letter-spacing: -0.03em; color: var(--ink);
+    animation: fadeSlideUp 0.6s 0.1s ease both;
+  }
+  .hero-name em { font-style: italic; color: var(--teal); }
+
+  .hero-roles {
+    margin-top: 16px;
+    animation: fadeSlideUp 0.6s 0.2s ease both;
+  }
+  .hero-roles p {
+    font-size: 0.95rem; font-weight: 500; color: var(--ink); line-height: 1.6;
+  }
+  .hero-roles .location {
+    font-size: 0.85rem; font-weight: 400; color: var(--muted); margin-top: 5px;
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem; font-weight: 300;
+    color: #374151; margin-top: 22px; max-width: 420px; line-height: 1.75;
+    animation: fadeSlideUp 0.6s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: flex; gap: 12px; margin-top: 36px;
+    animation: fadeSlideUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--teal); color: white;
+    padding: 13px 28px; border-radius: 6px;
+    font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: #0f766e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,148,136,0.3); }
+  .btn-ghost {
+    background: transparent; color: var(--ink);
+    padding: 13px 28px; border-radius: 6px;
+    font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; border: 1.5px solid var(--border);
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px; position: relative; z-index: 1;
+    animation: fadeSlideUp 0.6s 0.3s ease both;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 22px; transition: background 0.2s;
+  }
+  .stat-card:hover { background: rgba(255,255,255,0.1); }
+  .stat-number {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem; font-weight: 600;
+    color: var(--teal-mid); line-height: 1; letter-spacing: -0.02em;
+  }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 6px; line-height: 1.4; }
+
+  .hero-quote {
+    margin-top: 36px; position: relative; z-index: 1;
+    animation: fadeSlideUp 0.6s 0.5s ease both;
+  }
+  .hero-quote blockquote {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-size: 1rem;
+    color: rgba(255,255,255,0.65); line-height: 1.65;
+    padding-left: 18px; border-left: 3px solid var(--teal);
+  }
+
+  /* SECTIONS */
+  section { padding: 96px 80px; }
+  .section-label {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.15; color: var(--ink); margin-bottom: 48px;
+  }
+
+  /* ABOUT */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 72px; align-items: start; }
+  .about-text p { font-size: 1rem; color: #374151; margin-bottom: 18px; line-height: 1.8; }
+  .about-text p strong { color: var(--teal); font-weight: 600; }
+  .sidebar-card { background: var(--warm); border-radius: 12px; padding: 26px; margin-bottom: 18px; }
+  .sidebar-card h4 {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 14px;
+  }
+  .sidebar-card ul { list-style: none; }
+  .sidebar-card ul li {
+    font-size: 0.88rem; color: var(--ink);
+    padding: 4px 0; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+  }
+  .sidebar-card ul li::before { content: '→'; color: var(--teal); font-size: 0.78rem; margin-top: 3px; flex-shrink: 0; }
+
+  /* CASE STUDY */
+  #casestudy { background: var(--cream); }
+  .cs-header {
+    background: var(--ink); border-radius: 16px;
+    padding: 48px; margin-bottom: 52px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 40px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cs-header::before {
+    content: ''; position: absolute; top: -60px; right: 60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,148,136,0.22) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cs-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-mid); margin-bottom: 10px; }
+  .cs-title { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: white; letter-spacing: -0.02em; line-height: 1.2; }
+  .cs-subtitle { font-size: 0.88rem; color: rgba(255,255,255,0.48); margin-top: 8px; }
+  .cs-meta { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1; }
+  .cs-meta-item {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 12px 20px;
+    text-align: center; min-width: 130px;
+  }
+  .cs-meta-key { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); display: block; margin-bottom: 3px; }
+  .cs-meta-val { font-size: 0.88rem; font-weight: 600; color: white; }
+
+  /* timeline */
+  .cs-timeline { display: flex; flex-direction: column; position: relative; }
+  .cs-timeline::before {
+    content: ''; position: absolute; left: 19px; top: 32px; bottom: 32px;
+    width: 2px; background: linear-gradient(to bottom, var(--teal) 60%, transparent);
+  }
+  .cs-step { display: grid; grid-template-columns: 40px 1fr; gap: 24px; padding-bottom: 44px; align-items: start; }
+  .cs-step:last-child { padding-bottom: 0; }
+  .step-dot {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--white); border: 2px solid var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0; position: relative; z-index: 1;
+    box-shadow: 0 0 0 4px var(--cream);
+  }
+  .step-content { padding-top: 8px; }
+  .step-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 5px; }
+  .step-title { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .step-body { font-size: 0.92rem; color: #4b5563; line-height: 1.78; }
+  .step-body strong { color: var(--ink); font-weight: 600; }
+
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .feature-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px; transition: all 0.2s;
+  }
+  .feature-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(13,148,136,0.1); transform: translateY(-2px); }
+  .feature-icon { font-size: 1.3rem; margin-bottom: 8px; }
+  .feature-title { font-weight: 600; font-size: 0.88rem; color: var(--ink); margin-bottom: 4px; }
+  .feature-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+  .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+  .metric-card { background: var(--ink); border-radius: 12px; padding: 22px 16px; text-align: center; transition: transform 0.2s; }
+  .metric-card:hover { transform: translateY(-3px); }
+  .metric-value { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 700; color: var(--teal-mid); line-height: 1; letter-spacing: -0.02em; }
+  .metric-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); margin-top: 8px; line-height: 1.4; }
+  .metric-note { font-size: 0.74rem; color: var(--muted); margin-top: 12px; font-style: italic; }
+
+  .projection-strip {
+    background: var(--warm); border: 1.5px dashed var(--accent);
+    border-radius: 12px; padding: 20px 24px;
+    margin-top: 20px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .projection-strip .ps-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .projection-strip p { font-size: 0.88rem; color: #374151; line-height: 1.65; }
+  .projection-strip p strong { color: var(--ink); }
+
+  /* SKILLS */
+  #skills { background: var(--white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .skill-group h3 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1.5px solid var(--border); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag { background: var(--warm); color: var(--ink); font-size: 0.8rem; font-weight: 500; padding: 6px 13px; border-radius: 6px; border: 1px solid transparent; transition: all 0.15s; }
+  .skill-tag:hover { background: var(--teal-light); color: var(--teal); border-color: rgba(13,148,136,0.25); }
+  .skill-tag.highlight { background: var(--teal-light); color: var(--teal); border: 1px solid rgba(13,148,136,0.2); }
+
+  /* EXPERIENCE */
+  #experience { background: var(--cream); }
+  .exp-list { display: flex; flex-direction: column; gap: 24px; }
+  .exp-card {
+    background: var(--white); border-radius: 12px;
+    padding: 30px; border: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: start; transition: all 0.2s;
+  }
+  .exp-card:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(13,148,136,0.08); }
+  .exp-role { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+  .exp-company { font-size: 0.88rem; color: var(--teal); font-weight: 500; margin-top: 2px; }
+  .exp-desc { font-size: 0.86rem; color: #4b5563; line-height: 1.75; margin-top: 10px; }
+  .exp-period { font-size: 0.78rem; font-weight: 500; color: var(--muted); white-space: nowrap; background: var(--warm); padding: 5px 12px; border-radius: 100px; height: fit-content; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .exp-tag { font-size: 0.73rem; color: var(--muted); background: var(--warm); padding: 3px 10px; border-radius: 4px; }
+
+  /* EDUCATION */
+  #education { background: var(--white); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .edu-card { background: var(--warm); border-radius: 12px; padding: 26px; border: 1px solid transparent; transition: all 0.2s; }
+  .edu-card:hover { border-color: var(--teal); }
+  .edu-degree { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; color: var(--ink); line-height: 1.35; }
+  .edu-school { font-size: 0.85rem; color: var(--teal); margin-top: 4px; font-weight: 500; }
+  .edu-year { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+  .edu-badge { display: inline-block; margin-top: 10px; font-size: 0.7rem; font-weight: 600; background: var(--teal-light); color: var(--teal); padding: 3px 10px; border-radius: 4px; letter-spacing: 0.04em; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--ink); text-align: center; padding: 100px 80px;
+    position: relative; overflow: hidden;
+  }
+  #contact::before {
+    content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 520px; height: 520px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,148,136,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--teal-mid); margin-bottom: 14px; }
+  .cta-title { font-family: 'Fraunces', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: white; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 14px; position: relative; z-index: 1; }
+  .cta-sub { font-size: 0.95rem; color: rgba(255,255,255,0.45); margin-bottom: 40px; position: relative; z-index: 1; }
+  .cta-buttons { display: flex; justify-content: center; gap: 16px; position: relative; z-index: 1; flex-wrap: wrap; }
+
+  .btn-cta-primary {
+    background: var(--teal); color: white;
+    padding: 14px 32px; border-radius: 6px;
+    font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+    cursor: pointer;
+  }
+  .btn-cta-primary:hover { background: #0f766e; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,148,136,0.35); }
+
+  .btn-cta-ghost {
+    background: transparent; color: rgba(255,255,255,0.78);
+    padding: 14px 32px; border-radius: 6px;
+    font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; border: 1.5px solid rgba(255,255,255,0.2);
+    transition: all 0.2s; display: inline-block; cursor: pointer;
+  }
+  .btn-cta-ghost:hover { border-color: var(--teal-mid); color: var(--teal-mid); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: #060a12; padding: 26px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal-mid); }
+
+  /* ANIMATIONS */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 60px 24px 48px; }
+    .hero-right { padding: 48px 24px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    section { padding: 64px 24px; }
+    .about-grid, .skills-grid, .edu-grid { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: 1fr 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .cs-header { grid-template-columns: 1fr; }
+    .cs-meta { flex-direction: row; flex-wrap: wrap; }
+    .exp-card { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+    #contact { padding: 64px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Jesam Usani.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#casestudy">Case Study</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="available-badge">Open to Remote PM Roles</div>
+    <h1 class="hero-name">Product<br><em>Manager</em></h1>
+    <div class="hero-roles">
+      <p>Chemical Engineer &nbsp;·&nbsp; Fintech Product Manager</p>
+      <p class="location">📍 Lagos, Nigeria</p>
+    </div>
+    <p class="hero-tagline">I bring engineering discipline to product decisions — translating complex systems into user experiences that actually work.</p>
+    <div class="hero-cta">
+      <a href="#casestudy" class="btn-primary">View Case Study</a>
+      <a href="#contact" class="btn-ghost">Let's Talk</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">2yrs</div>
+        <div class="stat-label">Process engineering at Dangote Refinery</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1yr+</div>
+        <div class="stat-label">Active PM experience at MELLO fintech</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">✓ PM</div>
+        <div class="stat-label">Product Management certification completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Professional memberships & leadership roles</div>
+      </div>
+    </div>
+    <div class="hero-quote">
+      <blockquote>"The best product decisions are invisible to the user — they just remove anxiety and feel right."</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <h2 class="section-title" style="margin-bottom:24px;">Engineer by training.<br>Product thinker by choice.</h2>
+      <p>I am a Chemical Engineer at <strong>Dangote Petroleum Refinery & Petrochemicals</strong> — one of Africa's largest refineries — where I work with large volumes of process data, operational records, and complex cross-functional systems every day. That environment has trained me to think in feedback loops, failure modes, and root causes.</p>
+      <p>Alongside my engineering work, I am an active member of the product team at <strong>MELLO</strong>, a fintech startup building a peer-to-peer escrow platform ahead of its launch. I work across user research, developer collaboration, and growth strategy — helping shape the product from the ground up.</p>
+      <p>I hold a <strong>Product Management certification</strong> and am actively seeking remote PM roles where I can bring structured thinking, user empathy, and operational rigour to building products that genuinely work for people.</p>
+    </div>
+    <div class="about-sidebar reveal reveal-delay-1">
+      <div class="sidebar-card">
+        <h4>What I bring to a PM role</h4>
+        <ul>
+          <li>Systems thinking from engineering</li>
+          <li>User research & interview skills</li>
+          <li>Cross-functional team collaboration</li>
+          <li>Data-informed decision making</li>
+          <li>Clear written & verbal communication</li>
+          <li>Structured problem framing</li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Currently</h4>
+        <ul>
+          <li>Chemical Engineer, Dangote Refinery</li>
+          <li>Product team member at MELLO (pre-launch)</li>
+          <li>PM Certification — Completed ✓</li>
+          <li>Open to remote PM roles globally</li>
+          <li>Lagos, Nigeria — UTC+1</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section id="casestudy">
+  <div class="section-label">Featured Work</div>
+  <h2 class="section-title">Case Study</h2>
+
+  <div class="cs-header reveal">
+    <div>
+      <div class="cs-tag">MELLO · Fintech · Escrow Platform · Pre-Launch Stage</div>
+      <div class="cs-title">Milestone-Based<br>Transaction Tracker</div>
+      <div class="cs-subtitle">Designing trust into the escrow flow — solving transaction abandonment before launch</div>
+    </div>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-key">Role</span>
+        <span class="cs-meta-val">PM Associate</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-key">Stage</span>
+        <span class="cs-meta-val">Pre-Launch</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-key">Platform</span>
+        <span class="cs-meta-val">Mobile / Web</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-timeline">
+
+    <div class="cs-step reveal">
+      <div class="step-dot">🔍</div>
+      <div class="step-content">
+        <div class="step-label">Step 01 — Problem</div>
+        <div class="step-title">A critical trust gap in the core escrow experience</div>
+        <div class="step-body">
+          MELLO is a peer-to-peer escrow platform being built to protect buyers and sellers in online marketplace transactions — a space historically plagued by fraud, late delivery disputes, and zero trust between strangers. Early discovery work and user testing reveal a critical gap: <strong>once funds are locked in escrow, both parties feel stranded.</strong> No feedback loop. No milestone tracking. No way to raise a concern without triggering a full dispute. The experience feels like money disappearing into a black box — and this is a primary driver of hesitation in user testing.
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-step reveal reveal-delay-1">
+      <div class="step-dot">🧪</div>
+      <div class="step-content">
+        <div class="step-label">Step 02 — Research</div>
+        <div class="step-title">I interview buyers and sellers to understand the anxiety firsthand</div>
+        <div class="step-body">
+          I conduct structured user interviews with buyers and sellers who represent MELLO's target market — people who frequently transact on online marketplaces. The pattern is consistent: <strong>the moment funds enter escrow feels like a black box.</strong> Users describe anxiety, distrust, and helplessness. Secondary research into competing escrow and payment platforms confirms that transaction transparency — milestone visibility, in-app communication, and real-time status updates — is the single biggest differentiator between platforms users trust and those they abandon. I synthesise findings into a clear problem statement and present them to the product and engineering team to shape prioritisation.
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-step reveal">
+      <div class="step-dot">💡</div>
+      <div class="step-content">
+        <div class="step-label">Step 03 — Solution</div>
+        <div class="step-title">A Milestone-Based Transaction Tracker</div>
+        <div class="step-body">
+          Drawing from my research, I define and champion a <strong>Milestone-Based Transaction Tracker</strong> — a feature that transforms the flat escrow experience into a transparent, stage-gated workflow. Each transaction becomes a tracked journey, not a black box. Core capabilities currently in active development include:
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <div class="feature-title">Transaction Timeline View</div>
+            <div class="feature-desc">A live status bar showing exactly where a transaction sits: Funded → Dispatched → Delivery Confirmed → Released.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✅</div>
+            <div class="feature-title">Milestone Checkpoints</div>
+            <div class="feature-desc">Sellers mark delivery stages; buyers confirm receipt at each milestone before funds move — reducing all-or-nothing dispute risk.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <div class="feature-title">In-App Messaging Thread</div>
+            <div class="feature-desc">Each transaction has a dedicated communication thread, eliminating external chats that leave no audit trail.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚩</div>
+            <div class="feature-title">Dispute Trigger + Evidence Upload</div>
+            <div class="feature-desc">Users can flag a specific milestone and upload proof — shifting disputes from vague claims to documented evidence.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-step reveal reveal-delay-1">
+      <div class="step-dot">⚙️</div>
+      <div class="step-content">
+        <div class="step-label">Step 04 — Execution</div>
+        <div class="step-title">Sprint cycles, tight scope, disciplined delivery</div>
+        <div class="step-body">
+          I collaborate directly with the engineering team to scope the feature, write acceptance criteria, and prioritise the MVP version. We work across sprint cycles where I facilitate syncs, manage scope by cutting non-essential sub-features to protect delivery timelines, and ensure the build stays aligned with user expectations established during research. I am also designing the onboarding prompt that will introduce the Tracker to users at their first transaction — a low-friction explainer built to reduce confusion and <strong>prevent support tickets before they happen.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-step reveal">
+      <div class="step-dot">🎯</div>
+      <div class="step-content">
+        <div class="step-label">Step 05 — Projected Impact</div>
+        <div class="step-title">What we are designing toward at launch</div>
+        <div class="step-body">
+          MELLO is pre-launch. These projections are informed by user testing signals, research benchmarks from comparable platforms, and success metrics defined collaboratively with the product team. They represent the outcomes we are actively building toward and will validate post-launch.
+        </div>
+        <div class="metrics-row">
+          <div class="metric-card">
+            <div class="metric-value">↓~40%</div>
+            <div class="metric-label">Target drop in transaction abandonment based on testing signals</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">↑Trust</div>
+            <div class="metric-label">Improved user confidence observed in prototype testing sessions</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">↓Tickets</div>
+            <div class="metric-label">Fewer support queries expected from proactive status visibility</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">↑Repeat</div>
+            <div class="metric-label">Higher repeat transactions — a core growth target for launch</div>
+          </div>
+        </div>
+        <p class="metric-note">Projections based on user testing and industry benchmarks. Post-launch data will validate these hypotheses.</p>
+        <div class="projection-strip">
+          <div class="ps-icon">🚀</div>
+          <p>This feature is in active development. My role is to own the problem definition, maintain research alignment throughout the build, and define the measurement framework we will use to validate impact after launch.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-step reveal reveal-delay-1">
+      <div class="step-dot">🎓</div>
+      <div class="step-content">
+        <div class="step-label">Step 06 — Learnings</div>
+        <div class="step-title">The best product work removes anxiety — it doesn't just add features</div>
+        <div class="step-body">
+          This work continues to confirm something important: <strong>the most impactful product decisions are often invisible to the user.</strong> Not a flashy new feature — but the removal of anxiety from an existing flow. My engineering background has been an unexpected asset; the way I think about process stages, feedback loops, and failure modes maps directly onto designing a trustworthy transaction experience. I have also learned to fight for scope discipline — every feature cut in sprint planning is a conscious bet that a clean MVP on time outperforms a bloated v1 shipped late.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Know</div>
+  <h2 class="section-title">Skills & Tools</h2>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <h3>Product Skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">User Research</span>
+        <span class="skill-tag highlight">PRD Writing</span>
+        <span class="skill-tag highlight">Sprint Planning</span>
+        <span class="skill-tag">Roadmapping</span>
+        <span class="skill-tag">Feature Prioritisation</span>
+        <span class="skill-tag">Stakeholder Communication</span>
+        <span class="skill-tag">Onboarding Design</span>
+        <span class="skill-tag">Metrics & Analytics</span>
+      </div>
+    </div>
+    <div class="skill-group reveal reveal-delay-1">
+      <h3>Technical Skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Process Engineering</span>
+        <span class="skill-tag highlight">Systems Thinking</span>
+        <span class="skill-tag">Data Analysis</span>
+        <span class="skill-tag">Excel / Sheets</span>
+        <span class="skill-tag">SQL (learning)</span>
+        <span class="skill-tag">Figma (basic)</span>
+      </div>
+    </div>
+    <div class="skill-group reveal reveal-delay-2">
+      <h3>Tools & Platforms</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Notion</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Slack</span>
+        <span class="skill-tag">Google Workspace</span>
+        <span class="skill-tag">Miro</span>
+        <span class="skill-tag">Asana</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Where I've Worked</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-card reveal">
+      <div>
+        <div class="exp-role">Fintech Product Manager</div>
+        <div class="exp-company">MELLO — Peer-to-Peer Escrow Platform (Pre-Launch)</div>
+        <p class="exp-desc">Active member of the product team at a fintech startup building a trust-focused escrow solution for online marketplace transactions. I lead user research and discovery, define product requirements, and collaborate with the engineering team across sprint cycles. Currently driving the Milestone-Based Transaction Tracker — a core feature designed to solve transaction abandonment by giving users real-time visibility into their escrow flow ahead of platform launch.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">User Research</span>
+          <span class="exp-tag">Feature Definition</span>
+          <span class="exp-tag">Developer Collaboration</span>
+          <span class="exp-tag">Onboarding Design</span>
+          <span class="exp-tag">Pre-Launch Strategy</span>
+        </div>
+      </div>
+      <div class="exp-period">2024 – Present</div>
+    </div>
+
+    <div class="exp-card reveal reveal-delay-1">
+      <div>
+        <div class="exp-role">Chemical Engineer</div>
+        <div class="exp-company">Dangote Petroleum Refinery & Petrochemicals — Lekki, Lagos</div>
+        <p class="exp-desc">Operational engineer in the Hydrogen Generation Unit at one of Africa's most complex refineries. Responsibilities include managing large volumes of process data, maintaining precise operational records, and coordinating across technical teams. Core competencies in Steam Methane Reforming (SMR), High Temperature Shift (HTS) converters, water-gas shift reactions, and PSA units. This environment built my precision, systems mindset, and ability to operate effectively under pressure — skills I bring directly into product work.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Process Data Management</span>
+          <span class="exp-tag">Cross-functional Coordination</span>
+          <span class="exp-tag">SMR & HTS Operations</span>
+          <span class="exp-tag">Technical Documentation</span>
+          <span class="exp-tag">PSA Units</span>
+        </div>
+      </div>
+      <div class="exp-period">2024 – 2025</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION & CREDENTIALS -->
+<section id="education">
+  <div class="section-label">Academic Background & Memberships</div>
+  <h2 class="section-title">Education & Credentials</h2>
+  <div class="edu-grid">
+
+    <div class="edu-card reveal">
+      <div class="edu-degree">BEng Chemical Engineering</div>
+      <div class="edu-school">University of Benin</div>
+      <div class="edu-year">Graduated 2023</div>
+      <span class="edu-badge">Second Class Upper</span>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-degree">Product Management Certification</div>
+      <div class="edu-school">Completed</div>
+      <div class="edu-year">2024 – 2025</div>
+      <span class="edu-badge">Certified ✓</span>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-degree">Member, Nigerian Society of Chemical Engineers</div>
+      <div class="edu-school">NSChE</div>
+      <div class="edu-year">Active Member</div>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-3">
+      <div class="edu-degree">Membership & Engagement Coordinator</div>
+      <div class="edu-school">Nigerian Society of Engineers (NSE)</div>
+      <div class="edu-year">Active Leadership Role</div>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-degree">Member, Industrial Commissioning Association</div>
+      <div class="edu-school">ICxA</div>
+      <div class="edu-year">Active Member</div>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-degree">Member, Association of Professional Women in Engineering Nigeria</div>
+      <div class="edu-school">APWEN</div>
+      <div class="edu-year">Active Member</div>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-degree">Member, International Association of Engineers</div>
+      <div class="edu-school">IAEng</div>
+      <div class="edu-year">Active Member</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="cta-label">Let's Work Together</div>
+  <h2 class="cta-title">Ready to bring an engineer's<br>precision to your product team.</h2>
+  <p class="cta-sub">Open to remote PM roles globally &nbsp;·&nbsp; Available immediately &nbsp;·&nbsp; Lagos, Nigeria (UTC+1)</p>
+  <div class="cta-buttons">
+    <a href="mailto:jesam658@gmail.com" class="btn-cta-primary">✉&nbsp; Send Me an Email</a>
+    <a href="https://www.linkedin.com/in/jesam-usani" target="_blank" rel="noopener noreferrer" class="btn-cta-ghost">🔗&nbsp; Connect on LinkedIn</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Jesam Usani · Product Manager Portfolio</p>
+  <div class="footer-links">
+    <a href="#home">Back to top ↑</a>
+    <a href="#casestudy">Case Study</a>
+    <a href="mailto:jesam658@gmail.com">Email Me</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--teal)' : '';
+    });
+  });
+</script>
+</body>
+</html>
